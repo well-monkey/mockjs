@@ -22,8 +22,6 @@
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.js"></script>
 <script>
-//	var statusCode = 200;
-//	var success    = 10000;
 	var data = Mock.mock('http://g.cn', {
 		'name'    : '@name',
 		'age|1-100': 100,
@@ -41,11 +39,6 @@
 			_this.$http.post('http://g.cn',{emulateJSON:true}).then(function(response) {
 				console.log(response.data);
                 _this.msgData = response.data;
-//				if(response.status == statusCode) {
-//					if (response.data.returncode == success) {
-//
-//					}
-//				}
 			})
 		}
 	})
