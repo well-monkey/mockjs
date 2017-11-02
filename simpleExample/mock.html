@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>测试mock的例子</title>
+</head>
+<body>
+    <div class="mock">
+
+    </div>
+</body>
+<script src='./mock.js'></script>
+<script src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
+<script>
+	var data = Mock.mock('http://g.cn',{
+		// 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+		'list|1-10': [{
+			// 属性 id 是一个自增数，起始值为 1，每次增 1
+			'id|+1': 1,
+			"object|2": {
+				"310000": "上海市",
+				"320000": "江苏省",
+				"330000": "浙江省",
+				"340000": "安徽省"
+			},
+			"city|2-4": {
+				"110000": "北京市",
+				"120000": "天津市",
+				"130000": "河北省",
+				"140000": "山西省"
+			},
+			"string|1-10": "★",   //随机
+			"number|1-100": 100,
+			"boolean|1-2": true,
+			'foo': 'Syntax Demo',
+			'name': function() {
+				return this.foo
+			},
+		}],
+		"array|1": [
+			"AMD",
+			"CMD",
+			"UMD"
+		],
+		"hello|1-10": [
+			{
+				"name|+1": [
+					"Hello",
+					"Mock.js",
+					"!"
+				]
+			}
+		],
+		"fooHello": "Hello",
+		"nested": {
+			"a": {
+				"b": {
+					"c": "Mock.js"
+				}
+			}
+		},
+		"absolutePath": "@/fooHello @/nested/a/b/c"
+	})
+	// 输出结果
+	console.log(JSON.stringify(data, null, 4));
+	//请求地址
+	$.ajax({
+		type: 'POST',
+		data: '',
+		dataType: 'json',
+        url: "http://g.cn",
+        success: function(data){
+            console.log(data);
+            $('.mock').html('我是来自于mock输出数据:'+data.absolutePath);
+	    }
+	});
+</script>
+</html>
