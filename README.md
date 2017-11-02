@@ -30,4 +30,4 @@
  
   ##2.第二个例子 vue请求数据并成功展示 年龄 颜色 姓名
       
-     
+    ![image](https://github.com/well-monkey/mockjs/tree/master/img/vueExample.png)
